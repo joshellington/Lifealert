@@ -1,12 +1,11 @@
-Super Simple Sinatra Template
+Lifealert
 ===
 
-Simplest of the simple. Sultan of small.
+Tired of Pingdom's pricing model, so decided to build my own uptime alert/tracking tool.
 
 Includes
 ---
 
-- New Relic
 - jQuery
 - normalize.css reset
 - Basic helpers
@@ -15,4 +14,7 @@ Includes
 TODO
 ---
 
-- Decide on model/helper handling
+- Keep track of overall uptime
+- Add notification layers (email, SMS, etc.)
+- User accounts?
+- 
