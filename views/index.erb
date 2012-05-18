@@ -10,7 +10,7 @@
 <div id="sites">
 <% @all.each do |site| %>
   <div class="site" id="<%= site.id %>">
-    <h3><%= site.url %></h3>
+    <h3><a href="<%= site.url %>" target="_blank"><%= site.url %></a></h3>
     <h4><%= site.email %></h4>
     <h5><%= site.updated_at %></h5>
     <a href="#" class="delete">Delete</a>
