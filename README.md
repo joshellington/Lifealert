@@ -17,4 +17,4 @@ TODO
 - Keep track of overall uptime
 - Add notification layers (email, SMS, etc.)
 - User accounts?
-- 
+- Add cron job
