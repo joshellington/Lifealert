@@ -1059,3 +1059,12 @@ Served asset /application.css - 200 OK (0ms)
 
 Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:13:08 -0700
 Served asset /jquery_ujs.js - 200 OK (3ms)
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
