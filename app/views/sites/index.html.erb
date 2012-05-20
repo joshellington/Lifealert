@@ -1,0 +1,14 @@
+<h1>Sites</h1>
+<%= render 'form' %>
+
+<ul id="sites">
+  <% @sites.each do |site| %>
+    <li id="<%= site.id %>">
+      <h2><%= site.url %></h2>
+      <h3><%= site.updated_at %></h3>
+      <%= link_to 'Delete', site, :method => 'delete' %>
+    </li>
+  <% end %>
+</ul>
+
+  

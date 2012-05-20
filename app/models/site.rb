@@ -1,9 +1,4 @@
-
-class Site
-  include MongoMapper::Document
-
-  key :url
-  key :email
-
-  timestamps!
+class Site < ActiveRecord::Base
+  attr_accessible :url
+  validates :url, presence: true 
 end

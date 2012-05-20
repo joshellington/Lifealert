@@ -1,8 +1,4 @@
-# config.ru
+# This file is used by Rack-based servers to start the application.
 
-require 'rubygems'
-require 'sinatra'
-
-require File.dirname(__FILE__) + "/app/app.rb"
-
-run Sinatra::Application
+require ::File.expand_path('../config/environment',  __FILE__)
+run Lifealert::Application

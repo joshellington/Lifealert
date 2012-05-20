@@ -1,0 +1,1061 @@
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.7ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (1.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateSites (20120520045031)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "sites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120520045031')
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("sites")
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 21:56:05 -0700
+
+ActionController::RoutingError (undefined method `before' for SitesController:Class):
+  app/controllers/sites_controller.rb:2:in `<class:SitesController>'
+  app/controllers/sites_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (8.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 21:56:19 -0700
+
+ActionController::RoutingError (undefined method `before' for SitesController:Class):
+  app/controllers/sites_controller.rb:2:in `<class:SitesController>'
+  app/controllers/sites_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 21:56:38 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (48.8ms)
+  Rendered sites/index.html.erb within layouts/application (74.8ms)
+Compiled sites.css  (52ms)  (pid 56072)
+Compiled application.css  (70ms)  (pid 56072)
+Compiled jquery.js  (3ms)  (pid 56072)
+Compiled jquery_ujs.js  (1ms)  (pid 56072)
+Compiled sites.js  (758ms)  (pid 56072)
+Compiled application.js  (928ms)  (pid 56072)
+Completed 200 OK in 1369ms (Views: 1233.5ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 21:56:39 -0700
+Served asset /application.css - 200 OK (11ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 21:56:39 -0700
+Served asset /sites.css - 200 OK (4ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:39 -0700
+Served asset /jquery.js - 200 OK (8ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:39 -0700
+Served asset /jquery_ujs.js - 200 OK (18ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:39 -0700
+Served asset /sites.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:39 -0700
+Served asset /application.js - 200 OK (14ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 21:56:54 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.3ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.8ms)
+  Rendered sites/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 11ms (Views: 9.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 21:56:54 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:54 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 21:56:54 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:54 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:54 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:54 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 21:56:56 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.8ms)
+  Rendered sites/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 21:56:56 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 21:56:56 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:56 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:56 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:56 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 21:56:56 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 21:57:07 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (54.6ms)[0m  [1mINSERT INTO "sites" ("created_at", "updated_at", "url") VALUES (?, ?, ?)[0m  [["created_at", Sun, 20 May 2012 04:57:07 UTC +00:00], ["updated_at", Sun, 20 May 2012 04:57:07 UTC +00:00], ["url", nil]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 60ms (ActiveRecord: 56.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 21:57:07 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (2.1ms)
+  Rendered sites/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 21:57:09 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (3.4ms)
+  Rendered sites/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 21:57:09 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 21:57:09 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 21:57:09 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 21:57:09 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 21:57:09 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 21:57:09 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:00:17 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (2.8ms)
+  Rendered sites/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 17ms (Views: 9.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:00:17 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:00:17 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:00:17 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:00:17 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:00:18 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:00:18 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:00:19 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.1ms)
+  Rendered sites/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:00:19 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:00:19 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:00:19 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:00:19 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:00:19 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:00:19 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:02:22 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (3.3ms)
+  Rendered sites/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 18ms (Views: 10.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:02:22 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:22 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:02:22 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:22 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:22 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:22 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:02:27 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:02:27 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.0ms)
+  Rendered sites/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 10ms (Views: 7.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:02:28 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.8ms)
+  Rendered sites/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:02:28 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:02:28 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:28 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:28 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:28 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:28 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:02:29 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (36.4ms)
+  Rendered sites/index.html.erb within layouts/application (37.1ms)
+Completed 200 OK in 43ms (Views: 41.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:02:29 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:29 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:29 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:29 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:02:29 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:29 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:02:44 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.3ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (2.8ms)
+  Rendered sites/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 16ms (Views: 8.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:02:44 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:44 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:44 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:02:44 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:44 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:02:44 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:02:46 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:02:46 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.0ms)
+  Rendered sites/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:03:14 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.4ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (3.0ms)
+  Rendered sites/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 51ms (Views: 43.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:03:14 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:14 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:14 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:03:14 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:14 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:14 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:03:15 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+Completed 500 Internal Server Error in 1ms
+
+NoMethodError (undefined method `stringify_keys' for "http://joshellington.com":String):
+  app/controllers/sites_controller.rb:9:in `create'
+
+
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.2ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.3-p125/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:03:23 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.9ms)
+  Rendered sites/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 16ms (Views: 9.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:03:24 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.6ms)
+  Rendered sites/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:03:24 -0700
+Served asset /sites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:03:24 -0700
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:24 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:24 -0700
+Served asset /sites.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:24 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:24 -0700
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:03:25 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:03:25 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.1ms)
+  Rendered sites/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:25 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:03:25 -0700
+Served asset /sites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:03:25 -0700
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:25 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:25 -0700
+Served asset /sites.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:26 -0700
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:03:34 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:03:34 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.7ms)
+  Rendered sites/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:34 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:34 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:03:34 -0700
+Served asset /sites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:03:34 -0700
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:34 -0700
+Served asset /sites.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:03:34 -0700
+Served asset /application.js - 304 Not Modified (0ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateSites (20120520045031)
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("sites")
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:05:37 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.9ms)
+  Rendered sites/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 17ms (Views: 9.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:05:37 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:05:37 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:05:37 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:05:37 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:05:37 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:05:37 -0700
+Served asset /application.js - 200 OK (0ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateSites (20120520045031)
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("sites")
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:07:16 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (2.9ms)
+  Rendered sites/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 16ms (Views: 8.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:07:16 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:07:16 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:07:16 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:07:16 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:07:16 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:07:16 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:07:18 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 41ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:07:18 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.4ms)
+  Rendered sites/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 9ms (Views: 7.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:07:33 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (2.6ms)
+  Rendered sites/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:07:33 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:07:33 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:07:33 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:07:33 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:07:33 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:07:33 -0700
+Served asset /application.js - 200 OK (0ms)
+  [1m[36m (2.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "sites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20120520045031')[0m
+  [1m[35m (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateSites (20120520045031)
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("sites")
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:10:28 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.8ms)
+  Rendered sites/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 16ms (Views: 8.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:10:28 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:10:28 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:10:28 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:10:28 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:10:28 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:10:28 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:10:31 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:10:31 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (2.1ms)
+  Rendered sites/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:10:32 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.3ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (1.7ms)
+  Rendered sites/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:10:32 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:10:32 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:10:32 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:10:32 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:10:32 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:10:32 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:11:58 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (2.8ms)
+  Rendered sites/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 17ms (Views: 8.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:11:58 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:11:58 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:11:58 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:11:58 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:11:58 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:11:58 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:11:59 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "sites" ("created_at", "updated_at", "url") VALUES (?, ?, ?)[0m  [["created_at", Sun, 20 May 2012 05:11:59 UTC +00:00], ["updated_at", Sun, 20 May 2012 05:11:59 UTC +00:00], ["url", "http://joshellington.com"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 5ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:11:59 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (2.1ms)
+  Rendered sites/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:12:00 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.5ms)
+  Rendered sites/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:12:00 -0700
+Served asset /application.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:00 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:00 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:12:00 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:00 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:00 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:12:13 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (2.7ms)
+  Rendered sites/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:12:13 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:12:13 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:13 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:13 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:13 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:13 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started DELETE "/sites/1" for 127.0.0.1 at 2012-05-19 22:12:15 -0700
+Processing by SitesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "id"=>"1"}
+  [1m[35mSite Load (0.3ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "sites" WHERE "sites"."id" = ?  [["id", 1]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 6ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:12:15 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.1ms)
+  Rendered sites/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:12:16 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.7ms)
+  Rendered sites/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:12:16 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:12:16 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:16 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:16 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:16 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:12:16 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:12:19 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://joshellington.com"}, "commit"=>"Create Site"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "sites" ("created_at", "updated_at", "url") VALUES (?, ?, ?)[0m  [["created_at", Sun, 20 May 2012 05:12:19 UTC +00:00], ["updated_at", Sun, 20 May 2012 05:12:19 UTC +00:00], ["url", "http://joshellington.com"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:12:19 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.9ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.8ms)
+  Rendered sites/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/sites" for 127.0.0.1 at 2012-05-19 22:12:52 -0700
+Processing by SitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TVccyCyhxHyyHcSETLAiGicK8jUf2mVkTeC1/Ib/Mzs=", "site"=>{"url"=>"http://yhack.net"}, "commit"=>"Create Site"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "sites" ("created_at", "updated_at", "url") VALUES (?, ?, ?)[0m  [["created_at", Sun, 20 May 2012 05:12:52 UTC +00:00], ["updated_at", Sun, 20 May 2012 05:12:52 UTC +00:00], ["url", "http://yhack.net"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:12:52 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.7ms)
+  Rendered sites/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 10ms (Views: 7.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:13:03 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.2ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (2.9ms)
+  Rendered sites/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:13:03 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:13:03 -0700
+Served asset /jquery.js - 200 OK (1ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:13:03 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:13:03 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:13:03 -0700
+Served asset /jquery_ujs.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:13:03 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-19 22:13:08 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.2ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.6ms)
+  Rendered sites/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-19 22:13:08 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-19 22:13:08 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-19 22:13:08 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-19 22:13:08 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-19 22:13:08 -0700
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-19 22:13:08 -0700
+Served asset /jquery_ujs.js - 200 OK (3ms)
