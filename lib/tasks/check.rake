@@ -14,6 +14,7 @@ namespace :check do
     all.each do |site|
       res = check(site.url)
       puts res.inspect
+      res.inspect
     end
   end
 end

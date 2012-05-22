@@ -1,0 +1,5 @@
+rake aborted!
+Could not find table 'sites'
+
+Tasks: TOP => check:all
+(See full trace by running task with --trace)

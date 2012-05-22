@@ -1068,3 +1068,1469 @@ Served asset /jquery_ujs.js - 200 OK (3ms)
   [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
   [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
   [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-22 12:04:38 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (19.4ms)
+  Rendered sites/index.html.erb within layouts/application (33.8ms)
+Compiled jquery.js  (1ms)  (pid 56396)
+Compiled jquery_ujs.js  (0ms)  (pid 56396)
+Compiled application.js  (48ms)  (pid 56396)
+Completed 200 OK in 168ms (Views: 110.9ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-22 12:04:39 -0700
+Served asset /application.css - 200 OK (10ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-22 12:04:39 -0700
+Served asset /sites.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-22 12:04:39 -0700
+Served asset /jquery.js - 200 OK (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-22 12:04:39 -0700
+Served asset /application.js - 200 OK (6ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-22 12:04:39 -0700
+Served asset /jquery_ujs.js - 200 OK (1ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-22 12:04:39 -0700
+Served asset /sites.js - 200 OK (1ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateSites (20120520045031)
+Migrating to CreateAdminNotes (20120522132720)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "admin_notes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" varchar(255) NOT NULL, "resource_type" varchar(255) NOT NULL, "admin_user_id" integer, "admin_user_type" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("admin_notes")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_admin_notes_on_resource_type_and_resource_id" ON "admin_notes" ("resource_type", "resource_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("admin_notes")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_admin_notes_on_admin_user_type_and_admin_user_id" ON "admin_notes" ("admin_user_type", "admin_user_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120522132720')
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+Migrating to MoveAdminNotesToComments (20120522132721)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("admin_notes")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_admin_notes_on_admin_user_type_and_admin_user_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35m (15.9ms)[0m  DROP INDEX "index_admin_notes_on_admin_user_type_and_admin_user_id"
+  [1m[36m (5.8ms)[0m  [1mALTER TABLE "admin_notes" RENAME TO "active_admin_comments"[0m
+  [1m[35m (0.4ms)[0m  CREATE TEMPORARY TABLE "altered_active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" varchar(255) NOT NULL, "resource_type" varchar(255) NOT NULL, "admin_user_id" integer, "author_type" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("active_admin_comments")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("altered_active_admin_comments")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_admin_notes_on_resource_type_and_resource_id" ON "altered_active_admin_comments" ("resource_type", "resource_id")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "active_admin_comments"[0m
+  [1m[35m (3.2ms)[0m  DROP TABLE "active_admin_comments"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" varchar(255) NOT NULL, "resource_type" varchar(255) NOT NULL, "admin_user_id" integer, "author_type" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("altered_active_admin_comments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('temp_index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_admin_notes_on_resource_type_and_resource_id" ON "active_admin_comments" ("resource_type", "resource_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_active_admin_comments"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "altered_active_admin_comments"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "altered_active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" varchar(255) NOT NULL, "resource_type" varchar(255) NOT NULL, "author_id" integer, "author_type" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("active_admin_comments")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("altered_active_admin_comments")[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "temp_index_admin_notes_on_resource_type_and_resource_id" ON "altered_active_admin_comments" ("resource_type", "resource_id")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "active_admin_comments"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "active_admin_comments"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "active_admin_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "resource_id" varchar(255) NOT NULL, "resource_type" varchar(255) NOT NULL, "author_id" integer, "author_type" varchar(255), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("altered_active_admin_comments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('temp_index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_admin_notes_on_resource_type_and_resource_id" ON "active_admin_comments" ("resource_type", "resource_id")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_active_admin_comments"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "altered_active_admin_comments"[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "active_admin_comments" ADD "namespace" varchar(255)
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("active_admin_comments")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_active_admin_comments_on_namespace" ON "active_admin_comments" ("namespace")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_active_admin_comments_on_namespace')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_active_admin_comments_on_author_type_and_author_id" ON "active_admin_comments" ("author_type", "author_id")[0m
+  [1m[35m (0.1ms)[0m  UPDATE active_admin_comments SET namespace='admin'
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120522132721')[0m
+  [1m[35m (2.0ms)[0m  commit transaction
+Migrating to DeviseCreateAdminUsers (20120522202716)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "admin_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mAdminUser Exists (0.1ms)[0m  [1mSELECT 1 FROM "admin_users" WHERE "admin_users"."email" = 'admin@example.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (2.1ms)[0m  INSERT INTO "admin_users" ("created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "last_sign_in_at", "last_sign_in_ip", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", Tue, 22 May 2012 20:28:59 UTC +00:00], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["email", "admin@example.com"], ["encrypted_password", "$2a$10$.vAngDD4r1fS7Zdy55kvXOdaRorXzVtVPRgfQlo.L3JBKmF4r/2i."], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["sign_in_count", 0], ["updated_at", Tue, 22 May 2012 20:28:59 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("admin_users")[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_admin_users_on_email" ON "admin_users" ("email")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("admin_users")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_admin_users_on_email')
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_admin_users_on_reset_password_token" ON "admin_users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120522202716')
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("active_admin_comments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_active_admin_comments_on_author_type_and_author_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_active_admin_comments_on_namespace')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_admin_notes_on_resource_type_and_resource_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("admin_users")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_admin_users_on_reset_password_token')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_admin_users_on_email')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("sites")[0m
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:31:25 -0700
+Processing by Admin::DashboardController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/admin/login" for 127.0.0.1 at 2012-05-22 13:31:25 -0700
+Processing by ActiveAdmin::Devise::SessionsController#new as HTML
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/devise/shared/_links.erb (1.1ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/devise/sessions/new.html.erb within layouts/active_admin_logged_out (138.3ms)
+Compiled active_admin.css  (1257ms)  (pid 63717)
+Compiled jquery-ui.js  (2ms)  (pid 63717)
+Compiled active_admin/application.js  (0ms)  (pid 63717)
+Compiled active_admin/base.js  (65ms)  (pid 63717)
+Compiled active_admin.js  (73ms)  (pid 63717)
+Completed 200 OK in 1582ms (Views: 1570.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-05-22 13:31:26 -0700
+Served asset /jquery-ui.js - 200 OK (2ms)
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2012-05-22 13:31:26 -0700
+Served asset /active_admin/application.js - 200 OK (4ms)
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2012-05-22 13:31:26 -0700
+Served asset /active_admin/base.js - 200 OK (7ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:31:26 -0700
+Served asset /active_admin.css - 200 OK (11ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-22 13:31:26 -0700
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2012-05-22 13:31:26 -0700
+Served asset /active_admin.js - 200 OK (10ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-22 13:31:26 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started POST "/admin/login" for 127.0.0.1 at 2012-05-22 13:31:35 -0700
+Processing by ActiveAdmin::Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IZRiCeMU61m7/pk1L5Nwv+Jpol/NKQjt+W4F/m3HG+k=", "admin_user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."email" = 'admin@example.com' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mUPDATE "admin_users" SET "last_sign_in_at" = '2012-05-22 20:31:35.292927', "current_sign_in_at" = '2012-05-22 20:31:35.292927', "last_sign_in_ip" = '127.0.0.1', "current_sign_in_ip" = '127.0.0.1', "sign_in_count" = 1, "updated_at" = '2012-05-22 20:31:35.293689' WHERE "admin_users"."id" = 1[0m
+  [1m[35m (1.3ms)[0m  commit transaction
+Redirected to http://localhost:3000/admin
+Completed 302 Found in 169ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:31:35 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (10.1ms)
+Completed 200 OK in 14ms (Views: 13.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:31:35 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:32:22 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (28.1ms)
+Completed 200 OK in 120ms (Views: 56.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:32:22 -0700
+Served asset /active_admin.css - 200 OK (11ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:32:22 -0700
+Served asset /active_admin.js - 200 OK (32ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:32:24 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Exists (0.1ms)[0m  [1mSELECT 1 FROM "sites" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "sites" 
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count [0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (206.8ms)
+Completed 200 OK in 221ms (Views: 208.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:32:25 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 200 OK (5ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:32:25 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 200 OK (6ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:32:25 -0700
+Served asset /active_admin/orderable.png - 200 OK (5ms)
+
+
+Started GET "/admin/sites.json" for 127.0.0.1 at 2012-05-22 13:34:02 -0700
+Processing by Admin::SitesController#index as JSON
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0
+Completed 200 OK in 25ms (Views: 1.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/admin/sites.csv" for 127.0.0.1 at 2012-05-22 13:34:06 -0700
+Processing by Admin::SitesController#index as CSV
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 10000 OFFSET 0
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.csv.erb (86.0ms)
+Completed 200 OK in 89ms (Views: 87.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:36:25 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (6.4ms)
+Completed 200 OK in 10ms (Views: 8.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:36:25 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:36:25 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:36:28 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Exists (0.1ms)[0m  [1mSELECT 1 FROM "sites" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "sites" 
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count [0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (69.7ms)
+Completed 200 OK in 73ms (Views: 71.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:36:28 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:36:28 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:36:28 -0700
+Served asset /active_admin/orderable.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:36:28 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:36:28 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 304 Not Modified (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:37:46 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (11.3ms)
+Completed 500 Internal Server Error in 60ms
+
+ActionView::Template::Error (undefined local variable or method `post' for #<ActiveAdmin::Views::DashboardSection:0x00000102e17f00>):
+    1: render view_factory.dashboard_page
+  app/admin/dashboards.rb:47:in `block (4 levels) in <top (required)>'
+  app/admin/dashboards.rb:46:in `collect'
+  app/admin/dashboards.rb:46:in `block (3 levels) in <top (required)>'
+  app/admin/dashboards.rb:45:in `block (2 levels) in <top (required)>'
+
+
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.7ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (11.7ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:37:52 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (11.3ms)
+Completed 200 OK in 34ms (Views: 13.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:37:52 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:37:52 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 13:37:55 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (69.3ms)
+Completed 200 OK in 74ms (Views: 70.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:37:55 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:37:55 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:42:53 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.2ms)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:43:05 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Exists (0.1ms)[0m  SELECT 1 FROM "sites" LIMIT 1 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "sites" [0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count 
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0[0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (42.0ms)
+Completed 200 OK in 46ms (Views: 43.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:43:05 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:43:05 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:43:05 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:43:05 -0700
+Served asset /active_admin/orderable.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:43:05 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites/3" for 127.0.0.1 at 2012-05-22 13:43:14 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '3' AND "active_admin_comments"."namespace" = 'admin'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '3' AND "active_admin_comments"."namespace" = 'admin'[0m
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.5ms)
+Completed 200 OK in 21ms (Views: 18.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:43:15 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:43:15 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:46:17 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.1ms)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:46:17 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:46:17 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:46:18 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Exists (0.1ms)[0m  [1mSELECT 1 FROM "sites" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "sites" 
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count [0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (68.5ms)
+Completed 200 OK in 72ms (Views: 69.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:46:18 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:46:18 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:46:18 -0700
+Served asset /active_admin/orderable.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:46:18 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:46:18 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 304 Not Modified (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:47:11 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.3ms)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:47:11 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:47:11 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:47:34 -0700
+
+NoMethodError (undefined method `sidebar' for ActiveAdmin::Dashboards:Module):
+  app/admin/dashboards.rb:52:in `block in <top (required)>'
+  app/admin/dashboards.rb:1:in `<top (required)>'
+  config/routes.rb:2:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (28.6ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (34.6ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:48:57 -0700
+
+ActionController::RoutingError (No route matches [GET] "/admin"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.4ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:49:03 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (40.4ms)
+Completed 200 OK in 64ms (Views: 43.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:49:03 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:49:03 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/3" for 127.0.0.1 at 2012-05-22 13:49:06 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '3' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '3' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.7ms)
+Completed 200 OK in 22ms (Views: 19.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:49:06 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites/3/edit" for 127.0.0.1 at 2012-05-22 13:49:09 -0700
+Processing by Admin::SitesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mSite Load (8.8ms)[0m  [1mSELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1[0m  [["id", 3]]
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/edit.html.arb (32.0ms)
+Completed 200 OK in 36ms (Views: 24.8ms | ActiveRecord: 9.1ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:49:09 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:52:23 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Exists (0.1ms)[0m  [1mSELECT 1 FROM "sites" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "sites" 
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count [0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (67.4ms)
+Completed 200 OK in 72ms (Views: 68.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:52:24 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:52:24 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:52:24 -0700
+Served asset /active_admin/orderable.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:52:24 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:52:24 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:52:25 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Exists (0.1ms)[0m  SELECT 1 FROM "sites" LIMIT 1 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "sites" [0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count 
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0[0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (69.1ms)
+Completed 200 OK in 72ms (Views: 70.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:52:25 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:52:25 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:52:25 -0700
+Served asset /active_admin/orderable.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:52:25 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:52:25 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites?utf8=%E2%9C%93&q%5Burl_contains%5D=yhack.net&q%5Bcreated_at_gte%5D=&q%5Bcreated_at_lte%5D=&q%5Bupdated_at_gte%5D=&q%5Bupdated_at_lte%5D=&commit=Filter&order=id_desc&scope=" for 127.0.0.1 at 2012-05-22 13:52:29 -0700
+Processing by Admin::SitesController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"url_contains"=>"yhack.net", "created_at_gte"=>"", "created_at_lte"=>"", "updated_at_gte"=>"", "updated_at_lte"=>""}, "commit"=>"Filter", "order"=>"id_desc", "scope"=>""}
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Exists (0.1ms)[0m  [1mSELECT 1 FROM "sites" WHERE ("sites"."url" LIKE '%yhack.net%') LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "sites" WHERE ("sites"."url" LIKE '%yhack.net%')
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" WHERE ("sites"."url" LIKE '%yhack.net%') LIMIT 30 OFFSET 0) subquery_for_count [0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE ("sites"."url" LIKE '%yhack.net%') ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (42.9ms)
+Completed 200 OK in 47ms (Views: 44.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:52:29 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:52:29 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:52:29 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:52:29 -0700
+Served asset /active_admin/orderable.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:52:29 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:53:27 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Exists (0.1ms)[0m  SELECT 1 FROM "sites" LIMIT 1 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "sites" [0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count 
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0[0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (32.0ms)
+Completed 200 OK in 55ms (Views: 33.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:53:29 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.2ms)
+Completed 200 OK in 11ms (Views: 9.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:53:29 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:53:29 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:53:34 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Exists (0.1ms)[0m  [1mSELECT 1 FROM "sites" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "sites" 
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count [0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (73.8ms)
+Completed 200 OK in 98ms (Views: 75.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:53:35 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.2ms)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:53:35 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:53:35 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:53:36 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.0ms)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:53:36 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:53:36 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.7ms)
+  Rendered sites/index.html.erb within layouts/application (3.3ms)
+Compiled application.css  (9ms)  (pid 63812)
+Compiled application.js  (7ms)  (pid 63812)
+Completed 200 OK in 97ms (Views: 96.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /application.css - 304 Not Modified (21ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /active_admin.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /sites.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /jquery-ui.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /active_admin/application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /active_admin/base.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /active_admin.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /sites.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:36 -0700
+Served asset /application.js - 304 Not Modified (39ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (1.3ms)
+  Rendered sites/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 11ms (Views: 10.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /sites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /jquery-ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /active_admin/application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /active_admin/base.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /sites.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:38 -0700
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Processing by SitesController#index as HTML
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  Rendered sites/_form.html.erb (1.2ms)
+  Rendered sites/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 11ms (Views: 10.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /application.css - 200 OK (3ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /sites.css - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /jquery-ui.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /active_admin/base.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /active_admin/application.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:39 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Processing by SitesController#index as HTML
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered sites/_form.html.erb (1.2ms)
+  Rendered sites/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /application.css - 200 OK (3ms)
+
+
+Started GET "/assets/sites.css?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /sites.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /jquery.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /jquery-ui.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/application.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /active_admin/application.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /active_admin/base.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/assets/sites.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /sites.js - 200 OK (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-22 13:56:40 -0700
+Served asset /application.js - 200 OK (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:56:48 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.8ms)
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:56:48 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:56:53 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Exists (0.1ms)[0m  SELECT 1 FROM "sites" LIMIT 1 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "sites" [0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count 
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0[0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (71.7ms)
+Completed 200 OK in 75ms (Views: 73.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:56:53 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:56:53 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:56:53 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:56:53 -0700
+Served asset /active_admin/orderable.png - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 13:56:57 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mAdminUser Load (0.2ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.2ms)
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:56:57 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:57:52 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Exists (0.1ms)[0m  [1mSELECT 1 FROM "sites" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "sites" 
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count [0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (74.6ms)
+Completed 200 OK in 98ms (Views: 76.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:57:54 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.8ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `sidebar' for #<ActiveAdmin::Views::DashboardSection:0x000001042bd1f8>):
+    1: render view_factory.dashboard_page
+  app/admin/dashboards.rb:51:in `block (2 levels) in <top (required)>'
+
+
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.4ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.3ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:57:55 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (8.1ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionView::Template::Error (undefined method `sidebar' for #<ActiveAdmin::Views::DashboardSection:0x0000010407d3c0>):
+    1: render view_factory.dashboard_page
+  app/admin/dashboards.rb:51:in `block (2 levels) in <top (required)>'
+
+
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.6ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.5ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:57:55 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (8.2ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionView::Template::Error (undefined method `sidebar' for #<ActiveAdmin::Views::DashboardSection:0x00000102302fe8>):
+    1: render view_factory.dashboard_page
+  app/admin/dashboards.rb:51:in `block (2 levels) in <top (required)>'
+
+
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.4ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.3ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 13:58:10 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (11.1ms)
+Completed 200 OK in 34ms (Views: 13.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:58:10 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:58:10 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:58:12 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Exists (0.1ms)[0m  SELECT 1 FROM "sites" LIMIT 1 OFFSET 0
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "sites" [0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count 
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0[0m
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (42.1ms)
+Completed 200 OK in 47ms (Views: 43.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:58:12 -0700
+Served asset /active_admin/orderable.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:58:12 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:58:12 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites" for 127.0.0.1 at 2012-05-22 13:58:13 -0700
+Processing by Admin::SitesController#index as HTML
+  [1m[35mAdminUser Load (0.1ms)[0m  SELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1
+  [1m[36mSite Exists (0.1ms)[0m  [1mSELECT 1 FROM "sites" LIMIT 1 OFFSET 0[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "sites" 
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM "sites" LIMIT 30 OFFSET 0) subquery_for_count [0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" ORDER BY "sites"."id" desc LIMIT 30 OFFSET 0
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/index.html.arb (69.4ms)
+Completed 200 OK in 73ms (Views: 70.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 13:58:13 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 13:58:13 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/orderable.png" for 127.0.0.1 at 2012-05-22 13:58:13 -0700
+Served asset /active_admin/orderable.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-input-icon.png" for 127.0.0.1 at 2012-05-22 13:58:13 -0700
+Served asset /active_admin/datepicker/datepicker-input-icon.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin/datepicker/datepicker-nipple.png" for 127.0.0.1 at 2012-05-22 13:58:13 -0700
+Served asset /active_admin/datepicker/datepicker-nipple.png - 304 Not Modified (0ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 14:06:09 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.1ms)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:09 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:09 -0700
+Served asset /active_admin.css - 304 Not Modified (4ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2012-05-22 14:06:10 -0700
+Processing by Admin::DashboardController#index as HTML
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" 
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/dashboard/index.html.arb (7.0ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:10 -0700
+Served asset /active_admin.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:10 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:11 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.8ms)
+Completed 200 OK in 22ms (Views: 19.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:11 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:11 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:12 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.2ms)
+Completed 200 OK in 20ms (Views: 18.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:12 -0700
+Served asset /active_admin.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:12 -0700
+Served asset /active_admin.js - 304 Not Modified (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (16.9ms)
+Completed 200 OK in 20ms (Views: 18.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.1ms)
+Completed 200 OK in 20ms (Views: 18.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.2ms)
+Completed 200 OK in 47ms (Views: 45.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (50.0ms)
+Completed 200 OK in 56ms (Views: 53.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:13 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:38 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (43.6ms)
+Completed 200 OK in 47ms (Views: 45.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:38 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:38 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:39 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (16.9ms)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:39 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:39 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:39 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.0ms)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:39 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:39 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:39 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (16.7ms)
+Completed 200 OK in 20ms (Views: 18.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:39 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:39 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:40 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.2ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.5ms)
+Completed 200 OK in 21ms (Views: 19.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:40 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:40 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:54 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.1ms)
+Completed 200 OK in 20ms (Views: 18.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:55 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:55 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:06:55 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (16.3ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:06:55 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:06:55 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:08:08 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (16.7ms)
+Completed 200 OK in 20ms (Views: 18.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:08:08 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:08:08 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+
+
+Started GET "/admin/sites/2" for 127.0.0.1 at 2012-05-22 14:08:52 -0700
+Processing by Admin::SitesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAdminUser Load (0.1ms)[0m  [1mSELECT "admin_users".* FROM "admin_users" WHERE "admin_users"."id" = 1 LIMIT 1[0m
+  [1m[35mSite Load (0.1ms)[0m  SELECT "sites".* FROM "sites" WHERE "sites"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "active_admin_comments" WHERE "active_admin_comments"."resource_type" = 'Site' AND "active_admin_comments"."resource_id" = '2' AND "active_admin_comments"."namespace" = 'admin'
+DEPRECATION WARNING: f.buttons is deprecated in favour of f.actions and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information. (called from realtime at /Users/josh/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/benchmark.rb:309)
+  Rendered /Users/josh/.rvm/gems/ruby-1.9.2-p180/gems/activeadmin-0.4.4/app/views/active_admin/resource/show.html.arb (17.0ms)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/active_admin.css?body=1" for 127.0.0.1 at 2012-05-22 14:08:52 -0700
+Served asset /active_admin.css - 200 OK (3ms)
+
+
+Started GET "/assets/active_admin.js" for 127.0.0.1 at 2012-05-22 14:08:52 -0700
+Served asset /active_admin.js - 200 OK (0ms)
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
+  [1m[36mSite Load (0.1ms)[0m  [1mSELECT "sites".* FROM "sites" [0m
